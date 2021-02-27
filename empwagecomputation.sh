@@ -1,11 +1,19 @@
 #!/bin/bash -x
 
+#CONSTANT
+EMP_RATE_PER_HR=20
+FULL_TIME_HRS=8
+
+#variable
 empCheck=$((RANDOM%2))
 ispresent=1
 
+
 if [ $empCheck -eq $ispresent ]
 then
-    echo 'Emp is present'
+     salary=$(($EMP_RATE_PER_HR*$FULL_TIME_HRS))
+    echo $salary
 else
-    echo 'Emp is absent'
+   salary=0
+    echo '$salary'
 fi
