@@ -1,26 +1,24 @@
 #!/bin/bash -x
-#CONSTANT
-FULL_TIME_HRS=8
-PART_TIME_HRS=4
-EMP_RATE_PER_HR=20
-#variable
-empCheck=$((RANDOM%3))
+
+empcheck=$((RANDOM%3))
 isFullTime=1
 isPartTime=2
+EMP_RATE_PER_HRS=20
 
-if [ $empCheck -eq $isFullTime ]
-then
-     salary=$(($EMP_RATE_PER_HR*$FULL_TIME_HRS))
-     echo $salary
+case  $empcheck in
+     $isFullTime)
+      Emphrs=8
+  ;;
+      $isPartTime)
+       Emphrs=4
 
-elif [ $empCheck -eq $isPartTime ]
-then
-         salary=$(($EMP_RATE_PER_HR*$PART_TIME_HRS))
-        echo $salary
+  ;;
+  *)
+       Emphrs=0
 
-else
-        salary=0
-        echo $salary
-fi
+  ;;
+esac
+  salary=$(($Emphrs*$EMP_RATE_PER_HRS))
+  echo salary
 
- 
+
