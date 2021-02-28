@@ -8,30 +8,36 @@ NUM_WORKING_DAYS=20
 MAX_HRS_IN_MONTH=100
 
 #variable
-
+tatalsalary=0
 totalworkingdays=0
-totalEmpHrs=0
+tatalEmpHrs=0
+
+function getworkingHrs(){
+ case  $1 in
+          $IS_FULLTIME)
+           emphrs=8
+       ;;
+         $IS_PARTTIME)
+         emphrs=4
+
+       ;;
+       *)
+         emphrs=0
+       ;;
+     esac
+       echo $emphrs
+}
+     while [[ $totalEmpHrs -lt $MAX_HRS_IN_MONTH  &&  $totalworkingdays -lt $NUM_WORKING_DAYS ]]
+     do
+            ((totalworkingdays++))
+            empcheck=$((RANDOM%3))
+            emphrs=$( getworkingHrs $empcheck )
+            totalEmpHrs=$(($totalEmpHrs+$emphrs))
+
+    done
+
+           totalsalary=$(($totalEmpHrs*$EMP_RATE_PER_HR))
+             echo $totalsalary
 
 
-while [[ $totalEmpHrs -lt $MAX_HRS_IN_MONTH && $totalworkingdays -lt $NUM_WORKING_DAYS ]]
-do
-  ((totalworkingdays++))
-  empcheck=$((RANDOM%3))
-  case  $empcheck in
-     $IS_FULLTIME)
-        emphrs=8
-   ;;
-    $IS_PARTTIME)
-  emphrs=4
-
-   ;;
-   *)
-     emphrs=0
-    ;;
-  esac
-totalEmpHrs=$(($totalEmpHrs+$emphrs))
-
-done
-totalsalary=$(($totalEmpHrs*$EMP_RATE_PER_HR))
-echo $totalsalary
 
