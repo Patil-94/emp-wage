@@ -12,6 +12,8 @@ tatalsalary=0
 totalworkingdays=0
 tatalEmpHrs=0
 
+declare -A dailywage
+
 function getworkingHrs(){
  case  $1 in
           $IS_FULLTIME)
@@ -48,7 +50,7 @@ function getEmpWage()
     done
 
            totalsalary=$(($totalEmpHrs*$EMP_RATE_PER_HR))
-             echo $totalsalary
-
-           echo ${dailywage[@]}
+             echo  total salary $totalsalary
+             echo Daily wages ${dailywage[@]}
+           echo all keys ${ !dailywage[@]}
 
